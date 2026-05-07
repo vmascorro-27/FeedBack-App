@@ -1,0 +1,264 @@
+@{
+    ViewData["Title"] = "DASHBOARD";
+}
+
+<style>
+    #card_main_layout {
+        width: 98% !important;
+        max-width: 98% !important;
+    }
+    
+    .pulse-card {
+        /* background: #0d4ea626; */
+        padding: 20px;
+        border-radius: 2rem;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .pulse-card h4 {
+        margin: 0px;
+        color: #0d4ea6;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .pulse-circle {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #c8d8fa;
+        border: 3px solid #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pulse-card:hover{
+        transition: 400ms;
+        scale: 1.05;
+        color: white !important;
+    }
+
+    .pulse-inner {
+        width: 105px;
+        height: 105px;
+        border-radius: 50%;
+        background: #0d4ea6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 0 0 14px rgba(255, 255, 255, 0.12);
+    }
+
+    .pulse-score {
+        font-size: 34px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+    }
+
+    .pulse-total {
+        margin-top: 4px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+    }
+</style>
+
+
+
+@Html.AntiForgeryToken()
+<input name="__RequestVerificationToken" type="hidden" value="..." />
+
+<div class="content-card">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div class="pulse-card">
+                <h3 class="text-feedback fw-bold">SCORE FEEDBACK</h3>
+                <hr />
+                <div class="pulse-circle">
+                    <div class="pulse-inner">
+                        <div class="pulse-score" id="txt_global_score"></div>
+                        <div class="pulse-total">/10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="div_question_charts" style="width:100%; height:38rem;">
+                <canvas id="questionsRateChart"></canvas>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(window).on("load", function(){
+        GetDASHBOARD_QuestionsRate();
+        GetDASHBOARD_RateCompany();
+    });
+
+
+    function GetDASHBOARD_QuestionsRate(){
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        $.ajax({
+            url: '../DASHBOARD/GetDASHBOARD_QuestionsRate',
+            type: 'POST',
+            loaderTitle: 'Loading dashboard...',
+            loaderText: '',
+            data: { },
+            headers: {
+                'RequestVerificationToken': token
+            },
+            success: function (result) {
+                var rawData = JSON.parse(result);
+                const labels = rawData.map(x => x.Question);
+                const data = {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Excelente",
+                            data: rawData.map(x => x.Rate_5),
+                            backgroundColor: "#0d4ea6",
+                            barThickness: 10,
+                            maxBarThickness: 10
+                        },
+                        {
+                            label: "Bueno",
+                            data: rawData.map(x => x.Rate_4),
+                            backgroundColor: "#347BD9",
+                            barThickness: 10,
+                            maxBarThickness: 10
+                        },
+                        {
+                            label: "Regular",
+                            data: rawData.map(x => x.Rate_3),
+                            backgroundColor: "#75A8EB",
+                            barThickness: 10,
+                            maxBarThickness: 10
+                        },
+                        {
+                            label: "Malo",
+                            data: rawData.map(x => x.Rate_2),
+                            backgroundColor: "#EFAB6B",
+                            barThickness: 10,
+                            maxBarThickness: 10
+                        },
+                        {
+                            label: "Muy malo",
+                            data: rawData.map(x => x.Rate_1),
+                            backgroundColor: "#EF6B6B",
+                            barThickness: 10,
+                            maxBarThickness: 10
+                        }
+                    ]
+                };
+                
+                const questionLabelsPlugin = {
+                    id: "questionLabelsPlugin",
+                    afterDatasetsDraw(chart) {
+                        const { ctx, chartArea } = chart;
+                        ctx.save();
+                        ctx.font = "15px Arial";
+                        ctx.fillStyle = "#555";
+                        ctx.textAlign = "left";
+                        ctx.textBaseline = "bottom";
+                        chart.data.labels.forEach((label, index) => {
+                            const meta = chart.getDatasetMeta(0);
+                            const bar = meta.data[index];
+                            if (!bar) return;
+                            ctx.fillText(label, chartArea.left, bar.y - 10);
+                        });
+                        ctx.restore();
+                    }
+                };
+
+                new Chart(document.getElementById("questionsRateChart"), {
+                    type: "bar",
+                    data: data,
+                    plugins: [questionLabelsPlugin],
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        scales: {
+                            y: {
+                                stacked: true,
+                                ticks: {
+                                    display: false
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            x: {
+                                stacked: true,
+                                display: false
+                            }
+                        },
+
+                        datasets: {
+                            bar: {
+                                barThickness: 18,
+                                maxBarThickness: 18
+                            }
+                        },
+
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "QUESTION ANALYSIS",
+                                color: '#003b8a',
+                                font: {
+                                  size: 30,      
+                                  weight: 'bold'
+                                }
+                            },
+                            legend: {
+                                position: "top",
+                                labels: {
+                                    padding: 20
+                                }
+                            }
+                        }
+                    }
+                });
+            },
+            error: function () {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'An error occurred in request',
+                });
+            }
+        });
+    }
+
+
+    function GetDASHBOARD_RateCompany(){
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        $.ajax({
+            url: '../DASHBOARD/GetDASHBOARD_RateCompany',
+            type: 'POST',
+            async: true,
+            headers: {
+                'RequestVerificationToken': token
+            },
+            success: function (result) {
+                $('#txt_global_score').html(result);
+            },
+            error: function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: 'An error occurred in request',
+                });
+            }
+        });
+    }
+    
+</script>

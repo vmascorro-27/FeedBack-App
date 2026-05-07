@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Manage forms";
+}
+
+
+@Html.AntiForgeryToken()
+<input name="__RequestVerificationToken" type="hidden" value="..." />
+
+
+<div class="content-card">
+    <div class="row">
+        <div class="col-md-10 row">
+            <div class="col-md-1">
+                <i class="fa-solid fa-list-check fa-2x text-feedback"></i>
+            </div>
+            <div class="col-md-11">
+                <h2 class="text-feedback"><b>MANAGE FORMS</b></h2>
+            </div>
+        </div>
+        <div class="col-md-2 text-right">
+            <a asp-controller="SURVEYS" asp-action="NewSurvey"><buton class="btn btn_feedback">+ NEW SURVERY</buton></a>
+        </div>
+    </div>
+
+    <hr />
+    <div class="table-responsive" id="div_forms"></div>
+</div>
+
+
+
+<!-- Modal VIEW SURVEY -->
+<div class="modal fade" id="m_ViewForm" tabindex="-1" aria-labelledby="m_ViewFormLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="m_ViewFormLabel">PREVIEW</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="div_ViewForm"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Forms.js"></script>
+}
+
+<script>
+    $(window).on("load", function(){
+        GetForms();
+
+        const params = new URLSearchParams(window.location.search);
+        const msj = params.get("msj");
+        if(msj != null){
+            iziToast.success({
+                title: msj,
+                message: '',
+            });
+        }
+    });
+
+    
+
+
+</script>

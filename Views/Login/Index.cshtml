@@ -1,0 +1,73 @@
+@model FeedBack_APP.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - FeedBack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style_login.css" />
+    <link rel="icon" href="~/lib/images/RTS_emoji.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+
+            <section class="brand-panel">
+                <div class="brand-content">
+                    <p class="welcome-text">Welcome to</p>
+
+                    <div class="brand-logo">
+                        <img class="img_logo" src="https://remoteteamsolutions.com/wp-content/uploads/2024/12/Remoties-Emoji.png" />
+                    </div>
+
+                    <h1 class="brand-title">FeedBack</h1>
+                    <p class="brand-description">A space to listen, learn, and continuously improve. Share your feedback and help us build a better experience for everyone.</p>
+                </div>
+
+
+            </section>
+
+            <section class="form-panel">
+                <div class="form-content">
+                    <h2>LOGIN</h2>
+
+                    <form asp-action="Index" asp-controller="LOGIN" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="returnUrl" value="@returnUrl" />
+                        <div class="input-group">
+                            <label for="email">Username</label>
+                            <div class="input-line">
+                                <input type="email" placeholder="Enter your username" asp-for="Username" required />
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-line">
+                                <input type="password" placeholder="Enter your password" asp-for="Password" />
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <br />
+                        <div class="action-buttons">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>

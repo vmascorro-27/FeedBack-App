@@ -1,0 +1,88 @@
+﻿@{
+
+}
+
+<script>
+    var count_question = 0;
+</script>
+
+
+@Html.AntiForgeryToken()
+<input name="__RequestVerificationToken" type="hidden" value="..." />
+
+
+<div class="content-card">
+    <a asp-controller="SURVEYS" asp-action="Forms" class="btn" title="Go back" style="position: absolute;">
+        <i class="fa-solid fa-arrow-left-long fa-2x text-feedback"></i>
+    </a>
+    <h2 class="text-center fw-bold mt-2 text-feedback">NEW SURVEY</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Survey name</label>
+            <input class="form-control" id="txt_name" />
+        </div>
+        <div class="col-md-3">
+            <label>Form type</label>
+            <select class="form-select" id="id_type_form"></select>
+        </div>
+        <div class="col-md-3 text-end">
+            <button class="btn btn_feedback_primary mt-2" onclick="SaveForm();"><i class="fa-regular fa-circle-check"></i> Save survey</button>
+        </div>
+    </div>
+    <br />
+
+    <h5 class="text-center fw-bold text-feedback">QUESTIONS</h5>
+    <div id="div_form">
+        <div id="divQuestion_0" class="row card-question mt-3" draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)">
+            <div class="col-md-5">
+                <h5 class="text-center">Question</h5>
+                <textarea placeholder="New Question" class="form-control" rows="3" id="txt_question_0"></textarea>
+            </div>
+
+            <div class="col-md-4" id="divFormResponses_0" style="display:none;">
+                <h5 class="text-center">Responses</h5>
+                <div class="row">
+                    <div class="col-md-11" id="divResponses_0">
+                        <input class="form-control reponse_0 responses_question_0" placeholder="New response" />
+                    </div>
+                    <div class="col-md-1 text-start">
+                        <button class="btn btn-sm btn-success" onclick="AddResponse(0);"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <label class="switch">
+                    <input type="checkbox" id="SwitchQuestion_0" onchange="ShowResponsesForm(0)"/>
+                    <span class="slider"></span>
+                </label>
+                <span>Written / Optionable </span>
+                <button class="btn btn-sm btn-danger btn-remove-question" onclick="RemoveQuestion(0);"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <button class="btn btn_feedback" onclick="AddQuestion();"><i class="fa-solid fa-plus"></i> Add question</button>
+
+    
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Forms.js"></script>
+}
+
+
+
+<script>
+
+    $(window).on("load", function(){
+        GetFormTypesSelect();
+    });
+    
+    
+    
+
+</script>

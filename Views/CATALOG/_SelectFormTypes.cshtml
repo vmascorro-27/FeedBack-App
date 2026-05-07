@@ -1,0 +1,13 @@
+﻿@{
+    @model List<FeedBack_APP.Models.Entities.CatFormType>
+}
+
+@foreach (var item in Model)
+{
+    <option value="@item.Id">@item.FormType</option>
+}
+
+
+
+
+

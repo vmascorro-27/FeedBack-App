@@ -1,0 +1,59 @@
+﻿@model List<FeedBack_APP.Models.Entities.FeedbackFormG>
+@{
+
+    Layout = null;
+}
+
+@if (Model.Count() > 0)
+{
+    <table class="table align-middle table-hover" id="datatable_surveys">
+        <thead>
+            <tr class="text-center">
+                <th class="text-bg-primary">Name form</th>
+                <th class="text-bg-primary">Type form</th>
+                <th class="text-bg-primary">Date created</th>
+                <th class="text-bg-primary">Created by</th>
+                <th class="text-bg-primary">Last update</th>
+                <th class="text-bg-primary">Updated by</th>
+                <th class="text-bg-primary">No. Questions</th>
+                <th class="text-bg-primary">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td class="text-start">@item.NameForm</td>
+                    <td><h5><span class="badge rounded-pill text-bg-primary">@item.FormType.FormType</span></h5></td>
+                    <td>@item.UserCreated.Name</td>
+                    <td>@item.DateCreated.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        @if (item.DateUpdated != null)
+                        {
+                            <label>@item.DateUpdated.Value.ToString("MM/dd/yyyy")</label>
+                        }
+                    </td>
+                    <td>
+                        @if (item.IdUserUpdated != null)
+                        {
+                            <label>@item.UserUpdated.Name</label>
+                        }
+                    </td>
+                    <td class="fw-bold"><h4><span class="badge rounded-pill text-bg-primary">@item.FeedbackFormsD.Where(x => x.Active == 1).Count()</span></h4></td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Default button group">
+                            <button class="btn btn_feedback_icon_show" onclick="ShowSurvey(@item.IdFormG);"><i class="fa fa-bars"></i></button>
+                            <button class="btn btn_feedback_icon_edit" onclick="location.href='@Url.Action("EditSurvey", "SURVEYS", new { id_form_g = item.IdFormG })'"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn_feedback_icon_remove" onclick="OnOffForm(@item.IdFormG);"><i class="fa fa-remove"></i></button>
+                        </div>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 class="text-center">NOT DATA FOUND</h3>
+}

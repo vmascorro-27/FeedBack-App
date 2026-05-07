@@ -1,0 +1,60 @@
+﻿@model List<FeedBack_APP.Models.Entities.User>
+
+@using Microsoft.AspNetCore.Identity;
+@{
+    PasswordHasher<FeedBack_APP.Models.Entities.User> _passwordHasher = new PasswordHasher<FeedBack_APP.Models.Entities.User>();
+}
+
+
+@if (Model.Count() == 0)
+{
+    <h3 class="text-danger text-center">NO DATA FOUND</h3>
+}
+else
+{
+    <table class="table align-middle table-hover" id="datatable_users">
+        <thead>
+            <tr class="text-center">
+                <th class="text-bg-primary">Name</th>
+                <th class="text-bg-primary">Username</th>
+                <th class="text-bg-primary">Pass</th>
+                <th class="text-bg-primary">Rol</th>
+                <th class="text-bg-primary">Status</th>
+                <th class="text-bg-primary">Created at</th>
+                <th class="text-bg-primary">Actions</th>
+                <th class="text-bg-primary">On/Off</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var enc_pass = true;
+                if (_passwordHasher.VerifyHashedPassword(item, item.Pass, "RTStrc2026") == PasswordVerificationResult.Success) { enc_pass = false; }
+
+                <tr class="text-center">
+                    <td>@item.Name</td>
+                    <td>@item.Username</td>
+                    <td> 
+                        <h5>
+                            <span class="badge rounded-pill @(enc_pass == true ? "text-bg-primary" : "text-bg-danger")">@(enc_pass == true ? "*******" : "Not login")</span>
+                         </h5>
+                    </td>
+                    <td><h5><span class="badge rounded-pill text-bg-primary">@item.Role.NombreRol</span></h5></td>
+
+                    <td><h5><span class="badge rounded-pill @(item.Active == 1 ? "text-bg-primary" : "text-bg-secondary")">@(item.Active == 1 ? "Active" : "Inactive")</span></h5></td>
+
+                    <td>@item.DateCreated.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Default button group">
+                            <button class="btn btn_feedback_icon_edit" onclick="ResetUserPassword(@item.IdUser);"><i class="fa-solid fa-key"></i></button>
+                            <button class="btn btn_feedback_icon_show" onclick="GetDataUser(@item.IdUser);"><i class="fa fa-edit"></i></button>
+                        </div>
+                    </td>
+                    <td>
+                        <i onclick="OnOffUser(@item.IdUser, @(item.Active == 1 ? "0" : "1"));" class="fa-solid fa-2x @(item.Active == 1 ? "fa-toggle-on" : "fa-toggle-off") text-feedback" style="cursor:pointer;"></i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Users";
+}
+
+
+@Html.AntiForgeryToken()
+<div class="content-card">
+    <div class="row">
+        <div class="col-md-10 row">
+            <div class="col-md-1">
+                <i class="fa-solid fa-users fa-2x text-feedback"></i>
+            </div>
+            <div class="col-md-11">
+                <h2 class="text-feedback"><b>USERS</b></h2>
+            </div>
+        </div>
+        <div class="col-md-2 text-right">
+            <buton class="btn btn_feedback" onclick="AddUpdateForm(0);" data-bs-toggle="modal" data-bs-target="#m_AddEditUser">+ NEW USER</buton>
+        </div>
+    </div>
+
+    <hr />
+    <div class="table-responsive" id="div_users"></div>
+</div>
+
+
+
+<!-- Modal ADD/EDIT USER -->
+<div class="modal fade" id="m_AddEditUser" tabindex="-1" aria-labelledby="m_AddEditUserLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="m_AddEditUserLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="mb-3 col-md-12">
+                    <label class="form-label">Name</label>
+                    <br />
+                    <input type="text" class="form-control input_clean" id="InputName">
+                </div>
+                <div class="mb-3 col-md-12">
+                    <label for="InputUsername" class="form-label">Username</label>
+                    <input type="email" class="form-control input_clean" id="InputUsername">
+                </div>
+
+                <div class="mb-3 col-md-12">
+                    <label>Rol</label>
+                    <select class="form-select" id="select_rol"></select>
+                    <input name="__RequestVerificationToken" type="hidden" value="..." />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn_feedback_primary" id="btn_SaveUpdate_User">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Users.js"></script>
+}
+
+<script>
+    $(window).on("load", function(){
+        GetUsers();
+        GetRolesSelect();
+    });
+
+
+
+
+</script>
+

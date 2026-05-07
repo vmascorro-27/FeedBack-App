@@ -1,0 +1,115 @@
+﻿
+@model SurveyDTO
+@{
+    int index_question = -1;
+}
+
+
+@Html.AntiForgeryToken()
+<input name="__RequestVerificationToken" type="hidden" value="..." />
+
+
+<div class="content-card">
+    <a asp-controller="SURVEYS" asp-action="Forms" class="btn" title="Go back" style="position: absolute;">
+        <i class="fa-solid fa-arrow-left-long fa-2x text-feedback"></i>
+    </a>
+    <h2 class="text-center fw-bold mt-2 text-feedback">EDIT SURVEY - @Model.FormName</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Survey name</label>
+            <input class="form-control" id="txt_name" value="@Model.FormName" />
+        </div>
+        <div class="col-md-3">
+            <label>Form type</label>
+            <select class="form-select" id="id_type_form"></select>
+        </div>
+        <div class="col-md-3 text-end">
+            <button class="btn btn_feedback mt-2" onclick="SaveForm();"><i class="fa-regular fa-circle-check"></i> Update survey</button>
+            <input value="@Model.IdFormG" hidden id="id_form_g" />
+        </div>
+    </div>
+    <br />
+    <h5 class="text-center fw-bold text-feedback">QUESTIONS</h5>
+    <div id="div_form">
+        @foreach (var question in Model.Questions.OrderBy(x => x.IdQuestionD))
+        {
+            index_question++;
+            <div id="divQuestion_@index_question" class="row card-question mt-3" draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)">
+                <div class="col-md-5">
+                    <h5 class="text-center">Question</h5>
+                    <textarea placeholder="New Question" class="form-control" rows="3" id="txt_question_@index_question">@question.Question</textarea>
+                </div>
+
+                <div class="col-md-4" id="divFormResponses_@index_question" style="display: @(question.Written_Optionable == 0 ? "none" : "");">
+                    <h5 class="text-center">Responses</h5>
+                    <div class="row">
+                        <div class="col-md-11" id="divResponses_@index_question">
+                            <input class="form-control reponse_@index_question responses_question_@index_question" placeholder="New response" value="@(question.Responses != null && question.Responses.Any() ? question.Responses[0].Response : "")" />
+                            
+                        </div>
+                        <div class="col-md-1 text-start">
+                            <button class="btn btn-sm btn-success" onclick="AddResponse(@index_question);"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    @if (question.Written_Optionable == 1)  //OPTIONABLE
+                    {
+                        for (int i = 1; i < question.Responses.Count; i++)
+                        {
+                            string index_response = Guid.NewGuid().ToString();
+                            string string_response_id = $"{index_question}_{index_response}";
+
+                            <div class="row" id="response_@string_response_id">
+                                <div class="col-md-11" id="divResponses_@string_response_id">
+                                    <input class="form-control response_@string_response_id responses_question_@index_question"
+                                           placeholder="New response"
+                                           value="@question.Responses[i].Response" />
+                                </div>
+                                <div class="col-md-1 text-start">
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="RemoveResponse(@index_question, '@index_response');"><i class="fa fa-remove"></i></button>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="col-md-3 text-center">
+                    <label class="switch">
+                        <input type="checkbox" id="SwitchQuestion_@index_question" onchange="ShowResponsesForm(@index_question)" @(question.Written_Optionable == 1 ? "checked" : "") />
+                        <span class="slider"></span>
+                    </label>
+                    <span>Written / Optionable </span>
+                    <button class="btn btn-sm btn-danger btn-remove-question" onclick="RemoveQuestion(@index_question);"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <button class="btn btn_feedback" onclick="AddQuestion();"><i class="fa-solid fa-plus"></i> Add question</button>
+
+
+</div>
+
+@section Scripts {
+    <script src="~/js/Forms.js"></script>
+    <script>
+        var count_question = @index_question;
+    </script>
+}
+
+
+
+<script>
+    $(window).on("load", function(){
+        GetFormTypesSelect();
+        $("#id_type_form").val(@Model.IdFormType);
+    });
+
+    
+
+
+</script>
+
+
+

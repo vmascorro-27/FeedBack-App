@@ -1,0 +1,603 @@
+﻿
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+    .login-form h2 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+
+
+button:hover {
+    background: #0056b3;
+}
+
+
+.btn_feedback {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    background: #4694FF;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(70, 148, 255, 0.35);
+    transition: 0.2s ease;
+}
+
+
+
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e9e9e9;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    color: #222;
+}
+
+
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 1080px;
+    min-height: 620px;
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* PANEL IZQUIERDO */
+.brand-panel {
+    width: 42%;
+    position: relative;
+    background: linear-gradient(180deg, #0d4ea6 0%, #1e88f5 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 38px 18px;
+    overflow: hidden;
+}
+
+
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.welcome-text {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 55px;
+}
+
+.brand-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.brand-title {
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.brand-description {
+    max-width: 330px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.brand-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    opacity: 0.95;
+    padding-bottom: 4px;
+}
+
+    .brand-footer .divider {
+        width: 1px;
+        height: 14px;
+        background: rgba(255,255,255,0.7);
+    }
+
+/* PANEL DERECHO */
+.form-panel {
+    width: 58%;
+    background: #fdfdfd;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 430px;
+    position: relative;
+    z-index: 2;
+}
+
+    .form-content h2 {
+        text-align: center;
+        font-size: 34px;
+        font-weight: 500;
+        margin-bottom: 48px;
+        color: #2a2a2a;
+    }
+
+.input-group {
+    margin-bottom: 26px;
+}
+
+    .input-group label {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color: #2c2c2c;
+    }
+
+.input-line {
+    position: relative;
+    border-bottom: 2px solid #9ed7ff;
+    display: flex;
+    align-items: center;
+}
+
+    .input-line input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 8px 28px 8px 0;
+        font-size: 15px;
+        color: #333;
+    }
+
+        .input-line input::placeholder {
+            color: #b7b7b7;
+        }
+
+    .input-line i {
+        position: absolute;
+        right: 2px;
+        font-size: 13px;
+        color: #73c5ff;
+    }
+
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 26px;
+    font-size: 12px;
+    color: #7a7a7a;
+    flex-wrap: wrap;
+}
+
+    .terms input {
+        accent-color: #1565c0;
+        width: 14px;
+        height: 14px;
+    }
+
+    .terms a {
+        color: #4b78c8;
+        text-decoration: none;
+    }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+.action-buttons {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, #4694FF 0%, #0d5cc8 100%);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(13, 92, 200, 0.28);
+}
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 22px rgba(13, 92, 200, 0.34);
+    }
+
+.btn-secondary {
+    background: #f6f6f6;
+    color: #8c8c8c;
+    border: 1px solid #d8d8d8;
+}
+
+.btn-secondary:hover {
+    background: #ececec;
+}
+
+.text-danger {
+    color: #ff4646;
+}
+
+
+
+
+.img_logo {
+    width: 15rem;
+}
+
+.verification-panel {
+    background: linear-gradient(180deg, #0b4a9a 0%, #1b84f3 58%, #6dc6ff 100%);
+}
+
+.verification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.verification-icon {
+    margin-bottom: 24px;
+}
+
+.verification-icon-shell {
+    width: 112px;
+    height: 112px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.12) 100%);
+    border: 1px solid rgba(255,255,255,0.32);
+    box-shadow: 0 18px 35px rgba(5, 44, 92, 0.22);
+    backdrop-filter: blur(6px);
+}
+
+.verification-icon-shell i {
+    font-size: 42px;
+    color: #ffffff;
+}
+
+.verification-form-panel {
+    background:
+        radial-gradient(circle at top right, rgba(109, 198, 255, 0.22), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+}
+
+.verification-form-content h2 {
+    margin-bottom: 16px;
+}
+
+.verification-copy {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5f6f82;
+    margin: 0 auto 34px;
+    max-width: 360px;
+}
+
+.otp-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 8px 0 14px;
+}
+
+.otp-input {
+    width: 58px;
+    height: 68px;
+    border: 1px solid #c7dff7;
+    border-radius: 18px;
+    background: #ffffff;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #184c8f;
+    box-shadow: 0 12px 24px rgba(40, 100, 170, 0.08);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.otp-input:focus {
+    outline: none;
+    border-color: #4694ff;
+    box-shadow: 0 0 0 4px rgba(70, 148, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+.otp-error {
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    min-height: 20px;
+}
+
+.verification-actions {
+    margin-top: 18px;
+}
+
+.verification-submit {
+    width: 100%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .auth-card {
+        max-width: 900px;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+    }
+
+    .brand-title {
+        font-size: 34px;
+    }
+
+    .form-content h2 {
+        font-size: 28px;
+    }
+
+    .otp-group {
+        gap: 10px;
+    }
+
+    .otp-input {
+        width: 52px;
+        height: 62px;
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .auth-card {
+        flex-direction: column;
+        max-width: 420px;
+        min-height: auto;
+        border-radius: 20px;
+    }
+
+    .brand-panel,
+    .form-panel {
+        width: 100%;
+    }
+
+    .brand-panel {
+        min-height: 290px;
+        padding: 28px 22px 16px;
+    }
+
+        .brand-panel::after,
+        .brand-panel::before {
+            top: auto;
+            bottom: -115px;
+            left: -20px;
+            right: auto;
+            width: 120%;
+            height: 180px;
+            transform: rotate(0deg);
+            background: radial-gradient(circle at top center, rgba(255,255,255,0.98) 0 26px, transparent 27px), radial-gradient(circle at top center, rgba(255,255,255,0.80) 0 42px, transparent 43px), radial-gradient(circle at top center, rgba(255,255,255,0.55) 0 58px, transparent 59px);
+            background-repeat: repeat-x;
+            background-size: 110px 120px;
+        }
+
+    .welcome-text {
+        font-size: 18px;
+        margin-bottom: 26px;
+    }
+
+    .brand-title {
+        font-size: 24px;
+        margin-bottom: 18px;
+    }
+
+    .brand-description {
+        max-width: 240px;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .verification-badge {
+        margin-bottom: 18px;
+    }
+
+    .verification-icon {
+        margin-bottom: 16px;
+    }
+
+    .verification-icon-shell {
+        width: 84px;
+        height: 84px;
+        border-radius: 22px;
+    }
+
+    .verification-icon-shell i {
+        font-size: 30px;
+    }
+
+    .brand-footer {
+        font-size: 9px;
+        margin-top: 24px;
+    }
+
+    .form-panel {
+        padding: 34px 22px 28px;
+    }
+
+    .form-content {
+        max-width: 100%;
+    }
+
+        .form-content h2 {
+            font-size: 26px;
+            margin-bottom: 30px;
+        }
+
+    .verification-form-content h2 {
+        margin-bottom: 12px;
+    }
+
+    .verification-copy {
+        font-size: 13px;
+        margin-bottom: 26px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+        .input-group label {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+    .input-line input {
+        font-size: 13px;
+        padding: 8px 24px 8px 0;
+    }
+
+    .terms {
+        font-size: 10px;
+        margin: 14px 0 20px;
+    }
+
+    .otp-group {
+        gap: 8px;
+    }
+
+    .otp-input {
+        width: 46px;
+        height: 56px;
+        border-radius: 16px;
+        font-size: 24px;
+    }
+
+    .action-buttons {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-panel {
+        min-height: 260px;
+    }
+
+    .form-content h2 {
+        font-size: 22px;
+    }
+
+    .otp-group {
+        gap: 6px;
+    }
+
+    .otp-input {
+        width: 42px;
+        height: 52px;
+        border-radius: 14px;
+        font-size: 22px;
+    }
+
+    .btn {
+        min-width: 92px;
+    }
+}

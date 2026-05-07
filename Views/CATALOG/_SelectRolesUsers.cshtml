@@ -1,0 +1,10 @@
+﻿@model List<FeedBack_APP.Models.Entities.Role>
+@{
+    Layout = null;
+}
+
+
+@foreach (var rol in Model)
+{
+    <option value="@rol.IdRol">@rol.NombreRol</option>
+}

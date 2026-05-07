@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Manage feedback";
+}
+
+
+@Html.AntiForgeryToken()
+<input name="__RequestVerificationToken" type="hidden" value="..." />
+
+
+<div class="content-card">
+    <div class="row">
+        <div class="col-md-10 row">
+            <div class="col-md-1">
+                <i class="fa-solid fa-square-poll-horizontal fa-2x text-feedback"></i>
+            </div>
+            <div class="col-md-11">
+                <h2 class="text-feedback"><b>MANAGE FEEDBACK</b></h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Date start</label>
+            <input class="form-control" type="date" id="date_start" />
+        </div>
+        <div class="col-md-3">
+            <label>Date end</label>
+            <input class="form-control" type="date" id="date_end" />
+        </div>
+       @*  <div class="col-md-3">
+            <label>Client/Remotie</label>
+            <select class="form-select select_multiple" id="select_client_remoties" >
+                <option value="0">Remotie</option>
+                <option value="1">Client</option>
+            </select>
+        </div> *@
+        <div class="col-md-3">
+            <br />
+            <button class="btn btn_feedback" onclick="GetFeedBacks();"><i class="fa fa-search"></i> Search</button>
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive" id="div_feedback"></div>
+</div>
+
+
+
+<!-- Modal VIEW SURVEY -->
+<div class="modal fade" id="m_ViewSurvey" tabindex="-1" aria-labelledby="m_ViewSurveyLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="m_ViewSurveyLabel">SURVEY VIEW</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div id="div_ViewSurvey"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/Admin.js"></script>
+}
+
+<script>
+    $(window).on("load",function(){
+        var today = new Date();
+         function formatDate(date) {
+            var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        // Fecha de hoy
+        var todayFormatted = formatDate(today);
+
+        // Fecha hace 7 días
+        var pastDate = new Date();
+        pastDate.setDate(today.getDate() - 7);
+        var pastFormatted = formatDate(pastDate);
+
+        // Setear valores
+        $("#date_end").val(todayFormatted);
+        $("#date_start").val(pastFormatted);
+
+        GetFeedBacks();
+    });
+</script>
+
+

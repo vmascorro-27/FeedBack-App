@@ -1,0 +1,57 @@
+﻿@model SurveyDTO
+
+
+
+@if (Model != null)
+{
+    <div>
+        <div class="row">
+            <div class="col-md-8 text-start">
+                <h2 class="text-feedback"><b>@Model.FormName</b></h2>
+                <h5>Type form: @Model.FormTypeName</h5>
+                <label> @Model.FormTypeDescription</label>
+            </div>
+            <div class="col text-end">
+                <span>Created: <strong>@Model.FormDateCreateed.ToString("MM/dd/yyyy HH:MM tt")</strong></span>
+                <br />
+                <span>By: <strong>@Model.FormUserCreated</strong></span>
+                <br />
+                <a class="btn btn_feedback" asp-controller="SURVEYS" asp-action="EditSurvey" asp-route-id_form_g="@Model.IdFormG">Edit survey</a>
+            </div>
+        </div>
+        <hr />
+        <div class="p-4">
+            @foreach (var item in Model.Questions.Select((value, index) => new { value, index }))
+            {
+                <div id="divQuestion_0" class="card-question mt-3" draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)">
+                    <div class="row">
+                        <button class="btn btn_feedback_icon_show button-index-question"><strong>@(item.index + 1)</strong></button>
+                        <div class="col-md-12 text-start">
+                            <label class="ms-4">@item.value.Question</label>
+                            <br />
+                            @if (item.value.Written_Optionable == 1)  //OPTIONABLE
+                            {
+                                <div class="row">
+                                    @foreach (var respo in item.value.Responses.OrderBy(x => x.IdResponse))
+                                    {
+                                        <div class="col-md-6 p-2 card-response">
+                                            <strong>@respo.Response</strong>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <textarea disabled readonly rows="1" class="form-control"></textarea>
+                            }
+                        </div>
+                        @* <div class="col-md-2 text-center">
+                            Type question
+                            <h5 class="fw-bold">@(item.value.Written_Optionable == 1 ? "OPTIONABLE" : "WRITTEN")</h5>
+                        </div> *@
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

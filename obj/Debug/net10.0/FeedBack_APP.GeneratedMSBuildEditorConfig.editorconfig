@@ -1,0 +1,123 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FeedBack_APP
+build_property.RootNamespace = FeedBack_APP
+build_property.ProjectDir = C:\Users\Roberto Grijalva\source\repos\FeedBack_APP\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Roberto Grijalva\source\repos\FeedBack_APP
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/ADMIN/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQURNSU5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/ADMIN/_FeedBack_d.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQURNSU5cX0ZlZWRCYWNrX2QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/ADMIN/_FeedBack_g_table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQURNSU5cX0ZlZWRCYWNrX2dfdGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/CATALOG/_SelectFormTypes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ0FUQUxPR1xfU2VsZWN0Rm9ybVR5cGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/CATALOG/_SelectRolesUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ0FUQUxPR1xfU2VsZWN0Um9sZXNVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/DASHBOARD/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcREFTSEJPQVJEXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/FEEDBACK/AnsweredViews/AnsweredSurveyClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRkVFREJBQ0tcQW5zd2VyZWRWaWV3c1xBbnN3ZXJlZFN1cnZleUNsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/FEEDBACK/AnsweredViews/AnsweredSurveyRemotie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRkVFREJBQ0tcQW5zd2VyZWRWaWV3c1xBbnN3ZXJlZFN1cnZleVJlbW90aWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/FEEDBACK/Survey/ErrorRequestSurvey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRkVFREJBQ0tcU3VydmV5XEVycm9yUmVxdWVzdFN1cnZleS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/FEEDBACK/Survey/SurveyForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRkVFREJBQ0tcU3VydmV5XFN1cnZleUZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Login/ChangeDefaultPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cQ2hhbmdlRGVmYXVsdFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Login/TwoFactor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cVHdvRmFjdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/SURVEYS/Forms/EditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1VSVkVZU1xGb3Jtc1xFZGl0Rm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/SURVEYS/Forms/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1VSVkVZU1xGb3Jtc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/SURVEYS/Forms/NewForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1VSVkVZU1xGb3Jtc1xOZXdGb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/SURVEYS/Forms/_SurveyPreview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1VSVkVZU1xGb3Jtc1xfU3VydmV5UHJldmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/SURVEYS/Forms/_SurveysTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1VSVkVZU1xGb3Jtc1xfU3VydmV5c1RhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/USERS/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVVNFUlNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/USERS/_UsersTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVVNFUlNcX1VzZXJzVGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Roberto Grijalva/source/repos/FeedBack_APP/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ttyvgeuzbv

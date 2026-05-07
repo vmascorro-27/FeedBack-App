@@ -1,0 +1,154 @@
+﻿@model SurveyDTO;
+
+@{
+
+    ViewData["Title"] = "Responder encuesta";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responder encuesta</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/style_feedback.css" rel="stylesheet" />
+
+    @* jQUERY *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    @* IZITOAST *@
+    <link href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+    <link rel="icon" href="~/lib/images/RTS_emoji.ico" type="image/x-icon">
+
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <div id="global-loading-overlay" class="global-loading-overlay" aria-hidden="true">
+            <div class="global-loading-card" role="status" aria-live="polite" aria-label="Loading">
+                <div class="spinner-border text-feedback global-loading-spinner" aria-hidden="true"></div>
+                <p class="global-loading-title mb-1">Loading...</p>
+                <p class="global-loading-text mb-0">Please wait a moment.</p>
+            </div>
+        </div>
+
+        <!-- Main -->
+        <main class="main-content">
+            <div class="survey-shell">
+                <div class="survey-card">
+                    @if (Model != null)
+                    {
+                        <div class="survey-card-header text-center">
+                            <div class="text-end">
+                                <h5>@ViewBag.name_remotie - @ViewBag.periodo</h5>
+                                <h5>@ViewBag.client</h5>
+                                <label><b>@DateTime.Now.ToString("dd/MM/yyyy")</b></label>
+                                <br />
+                            </div>
+                            <hr />
+
+                            <h2 class="survey-title">Employee Experience Survey – Remote Team Solutions</h2>
+                            <img width="200" class="mt-2" src="~/lib/images/RTS_LOGO.png" />
+                            <br />
+                            <img width="200" class="mt-2" src="https://remoteteamsolutions.com/wp-content/uploads/2024/12/Remoties-Emoji.png" width="" />
+                            <p class="survey-description mt-3">
+                                Queremos conocer tu experiencia trabajando con nosotros.
+                                Tu retroalimentación nos ayuda a mejorar con la idea de que tengas el apoyo necesario para crecer con nosotros.
+                            </p>
+                            <br />
+                            <span>Cuando envies tus resultados, tus datos (email) y respuestas se guardaran automaticamente.</span>
+                        </div>
+
+                        @foreach (var question in Model.Questions)
+                        {
+                            int no_question = question.IdQuestionD;
+                            <div class="feedback-card">
+                                <input value="@question.Question" class="questions_inupts" id="question_@no_question" hidden />
+                                <input value="@question.Written_Optionable" id="typeQuestion_@no_question" hidden />
+
+                                <h2 class="feedback-title">@question.Question</h2>
+                                <fieldset class="rating-group">
+
+                                    @*  <p class="feedback-description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit sed diam nonummy nibh euismod tincidunt.
+                                </p> *@
+
+                                    @if (question.Written_Optionable == 1)  //OPTIONABLE
+                                    {
+                                        @* <legend class="rating-label">Califica tu experiencia</legend> *@
+                                        foreach (var respone in question.Responses.OrderBy(x => x.IdResponse).Select((value, index) => new { value, index }))
+                                        {
+                                            string id_response = Guid.NewGuid().ToString();
+                                            try
+                                            {
+                                                int rate_number = Convert.ToInt32(respone.value.Response);
+
+                                                <div class="stars stars_@no_question" id="stars_@id_response" onclick="GetValueResponseQuestion('@id_response', @rate_number, @no_question);">
+                                                    <input id="radio_@id_response" type="radio" name="rating_@no_question" value="@rate_number">
+                                                    <label for="radio_@id_response" class="star-item" aria-label="@rate_number estrella"><span>@* ★ *@ @respone.value.Response</span></label>
+                                                </div>
+                                            }
+                                            catch (Exception)
+                                            {
+                                                int rate_number = Convert.ToInt32(respone.index + 1);
+
+                                                <div class="stars stars_@no_question" id="stars_@id_response" onclick="GetValueResponseQuestion('@id_response', @rate_number, @no_question);">
+                                                    <input id="radio_@id_response" type="radio" name="rating_@no_question" value="@respone.value.Response">
+                                                    <label for="radio_@id_response" class="response-item" aria-label="@rate_number estrella"><span>@respone.value.Response</span></label>
+                                                </div>
+                                            }
+                                        }
+                                        @*  <p class="selected-value">Value: <strong id="ratingValue">4</strong></p> *@
+                                    }
+                                    else
+                                    {
+                                        @* <label for="openResponse_@no_question" class="feedback-subtitle">Write Your Experiences</label> *@
+                                        <textarea id="openResponse_@no_question" class="feedback-textarea" placeholder="Type Here..."></textarea>
+                                    }
+                                </fieldset>
+                            </div>
+                            }
+
+                            <div class="feedback-card">
+                                <div class="score-slider">
+                                <h2 class="feedback-title">Rate the company</h2>
+                                    <input type="range" id="scoreRange" min="1" max="10" step="1" value="5">
+                                    <div class="score-value">
+                                        <span id="scoreSelected">5</span>/10
+                                    </div>
+                                </div>
+                            </div>
+
+                        <input value="@ViewBag.id_feedback" id="id_feedback" hidden />
+                        <hr />
+                        <button class="btn btn_feedback" onclick="AnswerSurvey();">SUBMIT</button>
+                        <br />
+                    }
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="container">
+                <span>© @DateTime.Now.Year - FeedBack</span>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var remotie_client = @ViewBag.remotie_client;
+    </script>
+    <script src="~/js/AnswerSurvey.js"></script>
+
+
+</body>
+</html>
